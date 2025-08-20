@@ -33,5 +33,7 @@ print(subtractResult)
 let multiplyResult = calcuator.multiply(firstNumber: 5, secondNumber: 9)
 print(multiplyResult)
 
-let divideResult = calcuator.divide(firstNumber: 34, secondNumber: 0)
+let divideResult = calcuator.divide(firstNumber: 15, secondNumber: 3)
 print(divideResult)
+
+
