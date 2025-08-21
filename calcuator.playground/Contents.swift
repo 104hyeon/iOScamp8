@@ -19,6 +19,12 @@ class Calculator {
         }
         return Double(firstNumber) / Double(secondNumber)
     }
+    func reminder(firstNumber: Int, secondNumber:Int) -> Int {
+        guard secondNumber != 0 else {
+            return 0
+        }
+        return firstNumber % secondNumber
+    }
     
 }
 
@@ -33,7 +39,8 @@ print(subtractResult)
 let multiplyResult = calcuator.multiply(firstNumber: 5, secondNumber: 9)
 print(multiplyResult)
 
-let divideResult = calcuator.divide(firstNumber: 15, secondNumber: 3)
+let divideResult = calcuator.divide(firstNumber: 24, secondNumber: 5)
 print(divideResult)
 
-
+let reminderResult = calcuator.reminder(firstNumber: 15, secondNumber: 8)
+print(reminderResult)
