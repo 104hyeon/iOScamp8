@@ -1,46 +1,76 @@
-//import UIKit
+
 
 class Calculator {
     
-    func sum(firstNumber: Int, secondNumber: Int) -> Int {
+    // 값을 저장하는 프로퍼티
+    var addOperator: AddOperation
+    var subtractOperator: SubtractOperation
+    var multiplyOperator: MultiplyOperation
+    var divideOperator: DivideOperation
+    var reminderOperator: ReminderOperation
+    
+    //초기화 하기
+    init(addOperator: AddOperation, subtractOperator: SubtractOperation, multiplyOperator: MultiplyOperation, divideOperator: DivideOperation, reminderOperator: ReminderOperation) {
+        self.addOperator = addOperator
+        self.subtractOperator = subtractOperator
+        self.multiplyOperator = multiplyOperator
+        self.divideOperator = divideOperator
+        self.reminderOperator = reminderOperator
+        
+    }
+}
+
+// 각 연산에 대한 클래스
+class AddOperation {
+    func add(firstNumber: Int, secondNumber: Int) -> Int {
         return firstNumber + secondNumber
     }
+}
+
+class SubtractOperation {
     func subtract(firstNumber: Int, secondNumber: Int) -> Int {
         return firstNumber - secondNumber
     }
-    
+}
+
+class MultiplyOperation {
     func multiply(firstNumber: Int, secondNumber: Int) -> Int {
         return firstNumber * secondNumber
     }
-    
+}
+
+class DivideOperation {
     func divide(firstNumber: Int, secondNumber: Int) -> Double {
         guard secondNumber != 0 else {
             return 0
         }
         return Double(firstNumber) / Double(secondNumber)
     }
+}
+
+class ReminderOperation {
     func reminder(firstNumber: Int, secondNumber:Int) -> Int {
         guard secondNumber != 0 else {
             return 0
         }
         return firstNumber % secondNumber
     }
-    
 }
 
-let calcuator = Calculator()
+// 각 연산의 인스턴스
+let addOperation = AddOperation()
+let subtractOperation = SubtractOperation()
+let multiplyOperation = MultiplyOperation()
+let divideOperation = DivideOperation()
+let reminderOperation = ReminderOperation()
 
-let sumResult = calcuator.sum(firstNumber: 10, secondNumber: 15)
-print(sumResult)
+// Calculator의 인스턴스
+let calculator = Calculator(addOperator: addOperation, subtractOperator: subtractOperation, multiplyOperator: multiplyOperation, divideOperator: divideOperation, reminderOperator: reminderOperation)
 
-let subtractResult = calcuator.subtract(firstNumber: 20, secondNumber: 7)
-print(subtractResult)
+calculator.addOperator.add(firstNumber: 17, secondNumber: 7)
+calculator.subtractOperator.subtract(firstNumber: 15, secondNumber: 6)
+calculator.multiplyOperator.multiply(firstNumber: 8, secondNumber: 4)
+calculator.divideOperator.divide(firstNumber: 27, secondNumber: 9)
+calculator.reminderOperator.reminder(firstNumber: 20, secondNumber: 7)
 
-let multiplyResult = calcuator.multiply(firstNumber: 5, secondNumber: 9)
-print(multiplyResult)
 
-let divideResult = calcuator.divide(firstNumber: 24, secondNumber: 5)
-print(divideResult)
-
-let reminderResult = calcuator.reminder(firstNumber: 15, secondNumber: 8)
-print(reminderResult)
