@@ -1,46 +1,45 @@
 
 
-class Calculator {
-    
-    // 값을 저장하는 프로퍼티
-    var addOperator: AddOperation
-    var subtractOperator: SubtractOperation
-    var multiplyOperator: MultiplyOperation
-    var divideOperator: DivideOperation
-    var reminderOperator: ReminderOperation
-    
-    //초기화 하기
-    init(addOperator: AddOperation, subtractOperator: SubtractOperation, multiplyOperator: MultiplyOperation, divideOperator: DivideOperation, reminderOperator: ReminderOperation) {
-        self.addOperator = addOperator
-        self.subtractOperator = subtractOperator
-        self.multiplyOperator = multiplyOperator
-        self.divideOperator = divideOperator
-        self.reminderOperator = reminderOperator
-        
-    }
+// 프로토콜에 연산에서 반복 적용되는 함수 넣기
+protocol AdstractOperation {
+    func calculate(firstNumber: Double, secondNumber: Double) -> Double
 }
+
+
+// Calculator 클래스로 분리
+class Calculator {
+    let addOperator = AddOperation()
+    let subtractOperator = SubtractOperation()
+    let multiplyOperator = MultiplyOperation()
+    let divideOperator = DivideOperation()
+    let reminderOperator = ReminderOperation()
+    
+     }
+
 
 // 각 연산에 대한 클래스
 class AddOperation {
-    func add(firstNumber: Int, secondNumber: Int) -> Int {
+    func calculate(firstNumber: Double, secondNumber: Double) -> Double {
         return firstNumber + secondNumber
     }
 }
 
-class SubtractOperation {
-    func subtract(firstNumber: Int, secondNumber: Int) -> Int {
-        return firstNumber - secondNumber
+    class SubtractOperation {
+        func calculate(firstNumber: Double, secondNumber: Double) -> Double {
+            return firstNumber - secondNumber
+        }
     }
-}
+
 
 class MultiplyOperation {
-    func multiply(firstNumber: Int, secondNumber: Int) -> Int {
+    func calcurate(firstNumber: Double, secondNumber: Double) -> Double {
         return firstNumber * secondNumber
     }
 }
 
+
 class DivideOperation {
-    func divide(firstNumber: Int, secondNumber: Int) -> Double {
+    func calcurate(firstNumber: Double, secondNumber: Double) -> Double {
         guard secondNumber != 0 else {
             return 0
         }
@@ -49,11 +48,11 @@ class DivideOperation {
 }
 
 class ReminderOperation {
-    func reminder(firstNumber: Int, secondNumber:Int) -> Int {
+    func calcurate(firstNumber: Double, secondNumber: Double) -> Double {
         guard secondNumber != 0 else {
             return 0
         }
-        return firstNumber % secondNumber
+        return firstNumber.truncatingRemainder(dividingBy: secondNumber)
     }
 }
 
@@ -65,12 +64,28 @@ let divideOperation = DivideOperation()
 let reminderOperation = ReminderOperation()
 
 // Calculator의 인스턴스
-let calculator = Calculator(addOperator: addOperation, subtractOperator: subtractOperation, multiplyOperator: multiplyOperation, divideOperator: divideOperation, reminderOperator: reminderOperation)
+let calculator = Calculator()
 
-calculator.addOperator.add(firstNumber: 17, secondNumber: 7)
-calculator.subtractOperator.subtract(firstNumber: 15, secondNumber: 6)
-calculator.multiplyOperator.multiply(firstNumber: 8, secondNumber: 4)
-calculator.divideOperator.divide(firstNumber: 27, secondNumber: 9)
-calculator.reminderOperator.reminder(firstNumber: 20, secondNumber: 7)
+
+// 출력해보기
+
+let addResult = calculator.addOperator.calculate(firstNumber: 10, secondNumber: 5)
+print(addResult)
+
+let subtractResult = calculator.subtractOperator.calculate(firstNumber: 27, secondNumber: 6)
+print(subtractResult)
+
+let multiplyResult = calculator.multiplyOperator.calcurate(firstNumber: 8, secondNumber: 4)
+print(multiplyResult)
+
+let divideResult = calculator.divideOperator.calcurate(firstNumber: 21, secondNumber: 5)
+print(divideResult)
+
+let reminderResult = calculator.reminderOperator.calcurate(firstNumber: 16, secondNumber: 3)
+print(reminderResult)
+
+
+
+
 
 
